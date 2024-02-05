@@ -23,6 +23,43 @@ const companySeedData = [
     password: 'password123',
     recentWorkPhotos: ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE'],
   },
+  {
+    name: 'Company 2',
+    abn: '987654321',
+    mobile: '987-654-3210',
+    email: 'company2@example.com',
+    username: 'company2user',
+    password: 'securepass456',
+    recentWorkPhotos: [
+      'https://example.com/company2/photo1.jpg',
+      'https://example.com/company2/photo2.jpg',
+    ],
+  },
+  {
+    name: 'Company 3',
+    abn: '456789012',
+    mobile: '456-789-0123',
+    email: 'company3@example.com',
+    username: 'company3user',
+    password: 'strongpassword789',
+    recentWorkPhotos: [
+      'https://example.com/company3/photo1.jpg',
+      'https://example.com/company3/photo2.jpg',
+    ],
+  },
+  {
+    name: 'Company 4',
+    abn: '789012345',
+    mobile: '789-012-3456',
+    email: 'company4@example.com',
+    username: 'company4user',
+    password: 'mypassword2022',
+    recentWorkPhotos: [
+      'https://example.com/company4/photo1.jpg',
+      'https://example.com/company4/photo2.jpg',
+    ],
+  }
+  
   // Add more company seed data as needed
 ];
 
@@ -52,7 +89,7 @@ const userSeedData = [
   {
     firstName: 'Alice',
     lastName: 'Johnson',
-    email: 'alice.johnson@example.com',
+    email: 'aliceee.johnson@example.com',
     password: 'password123',
     userName: 'Alice123',
     postings: [], // Add posting ids here
@@ -60,7 +97,7 @@ const userSeedData = [
   {
     firstName: 'Bob',
     lastName: 'Smith',
-    email: 'bob.smith@example.com',
+    email: 'bob.sssmith@example.com',
     password: 'securepass',
     userName: 'BobSmith',
     postings: [], // Add posting ids here
@@ -68,7 +105,7 @@ const userSeedData = [
   {
     firstName: 'Eve',
     lastName: 'Williams',
-    email: 'eve.williams@example.com',
+    email: 'eveee.williams@example.com',
     password: 'strongpassword',
     userName: 'EveW',
     postings: [], // Add posting ids here
