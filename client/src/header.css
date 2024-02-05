@@ -1,0 +1,76 @@
+/* src/components/Header.css */
+.header-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-container nav {
+  width: 100%;
+}
+
+.header-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.header-container li {
+  margin-right: 20px;
+}
+
+.header-container a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.header-container a:hover {
+  color: #ffcc00;
+}
+
+.header-container button {
+  margin-left: 20px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #ffcc00;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-container button:hover {
+  background-color: #333;
+  color: #ffcc00;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .header-container nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-container li {
+    margin: 10px 0;
+  }
+}
