@@ -1,12 +1,11 @@
 // Postings.js
 import React from 'react';
-
+import EscrowTransactionComponent from './escrowPayment'
 const Postings = () => {
   return (
     <div>
       <h2>Postings</h2>
-      {/* Add your Postings form here */}
-    </div>
+      <EscrowTransactionComponent />    </div>
   );
 };
 

@@ -1,6 +1,6 @@
-// models/Company.js
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongoose';
+const mongoose = require('mongoose') ;
+const { Schema } = mongoose;
+const bcrypt = require('bcrypt') ;
 
 
 const companySchema = new mongoose.Schema({
@@ -15,4 +15,4 @@ const companySchema = new mongoose.Schema({
 
 const Company = mongoose.model('Company', companySchema);
 
-export default Company;
+module.exports =  Company;

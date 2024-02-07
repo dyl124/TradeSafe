@@ -1,6 +1,6 @@
 // models/Advertising.js
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongoose';
+const mongoose = require('mongoose') ;
+const bcrypt = require('bcrypt') ;
 
 
 const advertisingSchema = new mongoose.Schema({
@@ -24,4 +24,4 @@ const advertisingSchema = new mongoose.Schema({
 
 const Advertising = mongoose.model('Advertising', advertisingSchema);
 
-export default Advertising;
+module.exports = Advertising;

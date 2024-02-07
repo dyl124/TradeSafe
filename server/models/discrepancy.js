@@ -1,6 +1,8 @@
 // models/Discrepancy.js
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongoose';
+const mongoose = require('mongoose') ;
+const { Schema } = mongoose;
+
+const bcrypt = require('bcrypt') ;
 
 
 const discrepancySchema = new mongoose.Schema({
@@ -25,4 +27,4 @@ const discrepancySchema = new mongoose.Schema({
 
 const Discrepancy = mongoose.model('Discrepancy', discrepancySchema);
 
-export default Discrepancy;
+module.exports = Discrepancy

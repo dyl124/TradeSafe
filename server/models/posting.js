@@ -1,8 +1,6 @@
-// models/Posting.js
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongoose';
-
+const mongoose = require('mongoose') ;
 const { Schema } = mongoose;
+const bcrypt = require('bcrypt') ;
 
 const postingSchema = new Schema({
  
@@ -17,4 +15,4 @@ const postingSchema = new Schema({
 
 const Posting = mongoose.model('Posting', postingSchema);
 
-export default Posting;
+module.exports =  Posting;

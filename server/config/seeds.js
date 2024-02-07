@@ -1,12 +1,13 @@
-import mongoose from 'mongoose';
-import Company from '../models/company.js';
-import Posting from '../models/posting.js';
-import Discrepancy from '../models/discrepancy.js';
-import User from '../models/user.js';
-import Advertising from '../models/advertising.js';
+var mongoose = require('mongoose');
+var Company = require('../models/company.js');
+var Posting = require('../models/posting.js');
+var Discrepancy = require('../models/discrepancy.js');
+var User = require('../models/user.js');
+var Advertising = require('../models/advertising.js');
 
-// Assuming ObjectId is imported from mongoose
-const { ObjectId } = mongoose.Types;
+// Extracting ObjectId from mongoose.Types
+var ObjectId = mongoose.Types.ObjectId;
+
 
 mongoose.connect('mongodb+srv://admin:admin@cluster0.opfttz8.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -21,7 +22,7 @@ const companySeedData = [
     email: 'company1@example.com',
     username: 'company1user',
     password: 'password123',
-    recentWorkPhotos: ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE'],
+    recentWorkPhotos: ['https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg'],
   },
   {
     name: 'Company 2',
@@ -31,8 +32,7 @@ const companySeedData = [
     username: 'company2user',
     password: 'securepass456',
     recentWorkPhotos: [
-      'https://example.com/company2/photo1.jpg',
-      'https://example.com/company2/photo2.jpg',
+      'https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg',
     ],
   },
   {
@@ -43,8 +43,7 @@ const companySeedData = [
     username: 'company3user',
     password: 'strongpassword789',
     recentWorkPhotos: [
-      'https://example.com/company3/photo1.jpg',
-      'https://example.com/company3/photo2.jpg',
+      'https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg',
     ],
   },
   {
@@ -55,8 +54,7 @@ const companySeedData = [
     username: 'company4user',
     password: 'mypassword2022',
     recentWorkPhotos: [
-      'https://example.com/company4/photo1.jpg',
-      'https://example.com/company4/photo2.jpg',
+      'https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg',
     ],
   }
   
@@ -67,7 +65,7 @@ const postingSeedData = [
   {
     title: 'Job Posting 1',
     caption: 'Looking for skilled professionals',
-    photos: ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE'],
+    photos: ['https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg'],
     priceRange: {
       min: 1000,
       max: 2000,
@@ -80,7 +78,7 @@ const discrepancySeedData = [
   {
     dateOfWorks: '2022-01-01',
     complaints: 'Issues with the work',
-    photosOfWork: ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE'],
+    photosOfWork: ['https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg'],
     scopeOfWorks: 'Scope of the work',
   },
   // Add more discrepancy seed data as needed
@@ -118,7 +116,7 @@ const userSeedData = [
 
 const advertisingSeedData = [
   {
-    photos: ['https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fcoenterprises.com.au%2Four-board%2Fmale-placeholder-image%2F&psig=AOvVaw3WK0VRRi2BRT8RroFRCVR9&ust=1707008137593000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDXjID7jYQDFQAAAAAdAAAAABAE'],
+    photos: ['https://northpointrp.com/wp-content/uploads/2019/01/Headshot-Placeholder-1.jpg'],
     title: 'Advertising Title',
     captions: 'Some captions here',
   },
