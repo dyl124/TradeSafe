@@ -11,10 +11,12 @@ const client = new ApolloClient({
 
 const GET_DISCREPANCY = gql`
 {
+user{
   discrepancy {
     _id  
     
   }
+}
 }
 `;
 
@@ -40,7 +42,6 @@ const DiscrepanciesPage = () => {
             <strong>Date of Submission:</strong> {discrepancy.dateOfSubmission}<br />
             <strong>Date of Works:</strong> {discrepancy.dateOfWorks}<br />
             <strong>Scope of Works:</strong> {discrepancy.scopeOfWorks}<br />
-            <strong>Posting Price Range:</strong> {discrepancy.posting.priceRange.min} - {discrepancy.posting.priceRange.max}<br />
             <strong>Photos of Work:</strong><br />
             {discrepancy.photosOfWork.map((photo, index) => (
               <img key={index} src={photo} alt={`Photo ${index + 1}`} style={{ maxWidth: "200px", maxHeight: "200px", margin: "5px" }} />

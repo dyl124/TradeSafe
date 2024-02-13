@@ -1,10 +1,8 @@
 // models/Advertising.js
 const mongoose = require('mongoose') ;
-const bcrypt = require('bcrypt') ;
 
 
 const advertisingSchema = new mongoose.Schema({
- 
   photos: [String],
   title: String,
   captions: String,
@@ -20,6 +18,12 @@ const advertisingSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company',
   },
+  creator:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 const Advertising = mongoose.model('Advertising', advertisingSchema);

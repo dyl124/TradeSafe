@@ -1,62 +1,120 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Layout, Menu, theme } from 'antd';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Layout, Menu } from "antd";
 import {
-  DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
+import { getToken, removeToken } from "../auth/auth"; // Import authentication functions from auth.js
 
-import HomePage from './home';
-import Login from './login';
-import Register from './register';
-import CompaniesPage from './companiesPage';
-import IndividualsPage from './individuals';
-import DiscrepanciesPage from './discrepancies';
-import PostingsPage from './postings';
-import AdvertisingPage from './advertising';
-import TransactionForm from './transactionForm';
+import HomePage from "./home";
+import Login from "./login";
+import Register from "./register";
+import CompaniesPage from "./companiesNearMePage";
+import DiscrepanciesPage from "./discrepancies";
+import AdvertisingPage from "./advertising";
+import MyCompaniesPage from "./myCompaniesPage";
+import MyAdvertisingPage from "./myAdvertisingPage";
+import UpdateMyProfile from "./updatemyprofile";
+import Logout from "./logout";
 
-const { Header, Content, Footer, Sider } = Layout;
+import AddCompanyPage from "./components/add/addCompany";
+import AddDiscrepanciesPage from './components/add/addDiscrepancy';
+import AddPostingPage from './components/add/addPosting';
+import AddAdvertisingPage from './components/add/addAdvertising';
 
+import DeleteCompanyPage from "./components/delete/deleteCompany";
+import DeleteDiscrepanciesPage from './components/delete/deleteDiscrepancy';
+import DeletePostingPage from './components/delete/deletePosting';
+import DeleteAdvertisingPage from './components/delete/deleteAdvertising';
+
+import UpdateCompanyPage from "./components/update/updateCompany";
+import UpdateDiscrepanciesPage from './components/update/updateDiscrepancy';
+import UpdatePostingPage from './components/update/updatePosting';
+import UpdateAdvertisingPage from './components/update/updateAdvertising';
+
+const { Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is logged in by verifying the presence of the token
+    const token = getToken();
+    setLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    // Remove the token from local storage and update the loggedIn state
+    removeToken();
+    setLoggedIn(false);
+  };
 
   const menuItems = [
-    { label: 'Home', key: '1', icon: <PieChartOutlined />, link: '/' },
-    { label: 'Login', key: '2', icon: <DesktopOutlined />, link: '/login' },
-    { label: 'Register ', key: '3', icon: <DesktopOutlined />, link: '/register' },
+    { label: "Home", key: "1", icon: <PieChartOutlined />, link: "/" },
     {
-      label: 'My Profile',
-      key: 'sub1',
+      label: "My Profile",
+      key: "submenu1",
       icon: <UserOutlined />,
       children: [
-        { label: 'Transactions', key: '4', link: '/transactions' },
-        { label: 'My Companies', key: '5', link: '/mycompanies' },
-        { label: 'My Advertising', key: '6', link: '/myadvertising' },
-        { label: 'My Posting', key: '7', link: '/mypostings' },
+        { label: "My Companies", key: "2", link: "/mycompanies" },
+        { label: "My Advertising", key: "3", link: "/myadvertising" },
+        { label: "Discrepancies", key: "4", link: "/discrepancies" },
+        { label: "UpdateMyProfile", key: "5", link: "/updatemyprofile" },
+      ],
+    },
+    {
+      label: "Connect",
+      key: "submenu2",
+      icon: <UserOutlined />,
+      children: [
+        { label: "Companies Near me", key: "6", link: "/companiesnearme" },
+        { label: "Advertising Near Me", key: "7", link: "/advertisingnearme" },
+      ],
+    },
+    {
+      label: "Create",
+      key: "submenu3",
+      icon: <UserOutlined />,
+      children: [
+        { label: "Add Companies", key: "8", link: "/addcompanies" },
+        { label: "Add Advertising", key: "9", link: "/addadvertising" },
+        { label: "Add Posting", key: "10", link: "/addposting" },
+        { label: "Add Discrepancies", key: "11", link: "/adddiscrepancies" },
 
       ],
     },
     {
-      label: 'Connect',
-      key: 'sub2',
+      label: "Delete",
+      key: "submenu4",
       icon: <UserOutlined />,
       children: [
-        { label: 'Companies Near me', key: '8', link: '/companies' },
-        { label: 'Advertising Near Me', key: '9', link: '/advertising' },
+        { label: "Delete Companies", key: "12", link: "/deletecompanies" },
+        { label: "Delete Advertising", key: "13", link: "/deleteadvertising" },
+        { label: "Delete Posting", key: "14", link: "/deleteposting" },
+        { label: "Delete Discrepancies", key: "15", link: "/deletediscrepancies" },
 
       ],
     },
+    {
+      label: "Update",
+      key: "submenu5",
+      icon: <UserOutlined />,
+      children: [
+        { label: "Update Companies", key: "16", link: "/updatecompanies" },
+        { label: "Update Advertising", key: "17", link: "/updateadvertising" },
+        { label: "Update Posting", key: "18", link: "/updateposting" },
+        { label: "Update Discrepancies", key: "19", link: "/updatediscrepancies" },
+
+      ],
+    },
+    { label: "Logout", key: "20", icon: <PieChartOutlined />, link: "/logout" },
+
   ];
 
+  // Function to render menu items
   const renderMenuItems = (items) =>
     items.map((item) =>
       item.children ? (
@@ -72,25 +130,46 @@ function App() {
 
   return (
     <Router>
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <div className="demo-logo-vertical" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             {renderMenuItems(menuItems)}
           </Menu>
         </Sider>
         <Layout>
-          <Content style={{ margin: '30px 32px' }}>
+          <Content style={{ margin: "30px 32px" }}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/companies" element={<CompaniesPage />} />
-              <Route path="/individuals" element={<IndividualsPage />} />
-              <Route path="/discrepancies" element={<DiscrepanciesPage />} />
-              <Route path="/postings" element={<PostingsPage />} />
-              <Route path="/advertising" element={<AdvertisingPage />} />
-              <Route path="/transactions" element={<TransactionForm />} />
+              {loggedIn ? (
+                <>
+                  <Route path="/mycompanies" element={<MyCompaniesPage />} />
+                  <Route path="/myadvertising" element={<MyAdvertisingPage />} />
+                  <Route path="/discrepancies" element={<DiscrepanciesPage />} />
+                  <Route path="/advertisingnearme" element={<AdvertisingPage />} />
+                  <Route path="/companiesnearme" element={<CompaniesPage />} />
+                  <Route path="/updatemyprofile" element={<UpdateMyProfile />} />
+                  <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
+                  <Route path="/addcompanies" element={<AddCompanyPage />} />
+                  <Route path="/addadvertising" element={<AddAdvertisingPage />} />
+                  <Route path="/addposting" element={<AddPostingPage />} />
+                  <Route path="/adddiscrepancies" element={<AddDiscrepanciesPage />} />
+                  <Route path="/deletecompanies" element={<DeleteCompanyPage />} />
+                  <Route path="/deleteadvertising" element={<DeleteAdvertisingPage />} />
+                  <Route path="/deleteposting" element={<DeletePostingPage />} />
+                  <Route path="/deletediscrepancies" element={<DeleteDiscrepanciesPage />} />
+                  <Route path="/updatecompanies" element={<UpdateCompanyPage />} />
+                  <Route path="/updateadvertising" element={<UpdateAdvertisingPage />} />
+                  <Route path="/updateposting" element={<UpdatePostingPage />} />
+                  <Route path="/updatediscrepancies" element={<UpdateDiscrepanciesPage />} />
+                  
+                </>
+              ) : (
+                <>
+                  <Route path="/login" element={<Login onLogin={() => setLoggedIn(true)} />} />
+                  <Route path="/register" element={<Register />} />
+                </>
+              )}
             </Routes>
           </Content>
         </Layout>

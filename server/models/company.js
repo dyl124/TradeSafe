@@ -1,6 +1,4 @@
 const mongoose = require('mongoose') ;
-const { Schema } = mongoose;
-const bcrypt = require('bcrypt') ;
 
 
 const companySchema = new mongoose.Schema({
@@ -8,9 +6,13 @@ const companySchema = new mongoose.Schema({
   abn: String,
   mobile: String,
   email: String,
-  userName: String,
-  password: String,
   recentWorkPhotos: [String],
+  director:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 const Company = mongoose.model('Company', companySchema);

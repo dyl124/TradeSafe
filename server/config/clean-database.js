@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Company = require('../models/company.js');
-var Posting = require('../models/posting.js');
 var Discrepancy = require('../models/discrepancy.js');
 var User = require('../models/user.js');
 var Advertising = require('../models/advertising.js');
+var Posting = require('../models/posting.js');
 
 async function cleanDatabase() {
   try {
@@ -15,10 +15,10 @@ async function cleanDatabase() {
 
     // Delete all documents from each collection
     await Company.deleteMany({});
-    await Posting.deleteMany({});
     await Discrepancy.deleteMany({});
     await User.deleteMany({});
     await Advertising.deleteMany({});
+    await Posting.deleteMany({});
 
     console.log('Database cleaned successfully');
   } catch (error) {

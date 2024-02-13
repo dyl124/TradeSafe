@@ -1,41 +1,51 @@
 import React from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { useQuery, gql } from "@apollo/client";
-import { Card, DatePicker, Space } from 'antd';
+import { Card } from 'antd';
 
-const client = new ApolloClient({
+
+const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
-  cache: new InMemoryCache()
 });
 
-const GET_COMPANIES = gql`
-  {
-    companies {
-      _id  
-      name
-      abn
-      mobile
-      email
-      recentWorkPhotos
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
+
+const GET_USER_COMPANIES = gql`
+  query GetUserCompanies {
+    user {
+      companies {
+        _id
+        name
+        abn
+        mobile
+        email
+        recentWorkPhotos
+      }
     }
   }
 `;
 
-const CompaniesPage = () => {
-  const { loading, error, data } = useQuery(GET_COMPANIES);
+const MyCompaniesPage = () => {
+  const { loading, error, data } = useQuery(GET_USER_COMPANIES);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  const userCompanies = data.user.companies;
+
   return (
     <div>
-      <h2>CompanyData:</h2>
+      <h2>Companies Belonging to the User:</h2>
+      
       <div className="card-container" style={{ display: 'flex', gap: '16px' }}>
-        {data.companies.map(company => (
-          <div key={company._id} style={{ marginBottom: '16px'  }}>
+        {userCompanies.map(company => (
+          <div key={company._id} style={{ marginBottom: '16px' }}>
             <Card
               hoverable
-              style={{ width: 240}}
+              style={{ width: 240 }}
               cover={<img alt="Recent Work" src={company.recentWorkPhotos} />}
             >
               <Card.Meta
@@ -49,7 +59,6 @@ const CompaniesPage = () => {
                 }
               />
             </Card>
-
           </div>
         ))}
       </div>
@@ -57,10 +66,10 @@ const CompaniesPage = () => {
   );
 };
 
-const CompaniesPageWithApollo = () => (
+const MyCompaniesPageWithApollo = () => (
   <ApolloProvider client={client}>
-    <CompaniesPage />
+    <MyCompaniesPage />
   </ApolloProvider>
 );
 
-export default CompaniesPageWithApollo;
+export default MyCompaniesPageWithApollo;

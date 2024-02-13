@@ -1,33 +1,24 @@
-const mongoose = require('mongoose') ;
-const { Schema } = mongoose;
-const bcrypt = require('bcrypt') ;
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
     unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
-  userName: {
+  firstName: {
     type: String,
-    required: true,
-    trim: true,
+  },
+  lastName: {
+    type: String,
   },
   password: {
     type: String,
     required: true,
     minlength: 5,
   },
-
-  // New fields to reference Company and Posting
   companies: [
     {
       type: Schema.Types.ObjectId,
@@ -54,9 +45,9 @@ userSchema.pre('save', async function (next) {
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;

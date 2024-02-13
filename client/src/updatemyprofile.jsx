@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Register() {
+function UpdateMyProfile() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ function Register() {
         e.preventDefault();
 
         try {
-            // Send register mutation request to your GraphQL server
+            // Send UpdateMyProfile mutation request to your GraphQL server
             const response = await fetch('http://localhost:3001/graphql', {
                 method: 'POST',
                 headers: {
@@ -18,15 +18,17 @@ function Register() {
                 },
                 body: JSON.stringify({
                     query: `
-                        mutation Register($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-                            addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-                                token
-                                user {
-                                    _id
-                                    firstName
-                                    lastName
-                                    email
-                                }
+                        mutation UpdateMyProfile($id: ID!, $firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+                            updateUser(
+                                firstName: $firstName,
+                                lastName: $lastName,
+                                email: $email,
+                                password: $password
+                            ) {
+                                firstName
+                                lastName
+                                email
+                                password
                             }
                         }
                     `,
@@ -39,12 +41,17 @@ function Register() {
                 }),
             });
 
-            const { data } = await response.json();
-            
+            const { data, errors } = await response.json();
+
+            if (errors) {
+                console.error(errors);
+                // Handle errors, such as displaying an error message to the user
+                return;
+            }
+
+            // Handle successful response, such as redirecting the user or showing a success message
+            alert('Profile updated successfully!');
             window.location.href = "http://localhost:3000/login";
-            alert('successfully signed up.')
-            
-            
         } catch (error) {
             console.error(error);
         }
@@ -52,7 +59,7 @@ function Register() {
 
     return (
         <div>
-            <h2>Register</h2>
+            <h2>Update My Profile</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name:</label>
@@ -96,10 +103,10 @@ function Register() {
                         autoComplete="current-password"
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Update</button>
             </form>
         </div>
     );
 }
 
-export default Register;
+export default UpdateMyProfile;

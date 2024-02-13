@@ -1,29 +1,14 @@
-const User = require('../models/user.js');
-const Advertising = require('../models/advertising.js');
-const Company = require('../models/company.js');
-const Discrepancy = require('../models/discrepancy.js');
-const Posting = require('../models/posting.js');
-const { AuthenticationError } = require('../utils/auth.js');
+// resolvers.js
+
+const { signToken, AuthenticationError } = require('../utils/auth');
+const Company = require('../models/company');
+const Posting = require('../models/posting');
+const Advertising = require('../models/advertising');
+const User = require('../models/user');
+const Discrepancy = require('../models/discrepancy');
 
 const resolvers = {
   Query: {
-    companies: async () => Company.find(),
-    postings: async (parent, { companyId, name }) => {
-      const params = {};
-
-      if (companyId) {
-        params.company = companyId;
-      }
-
-      if (name) {
-        params.title = {
-          $regex: name,
-        };
-      }
-
-      return Posting.find(params).populate('company');
-    },
-    posting: async (parent, { id }) => Posting.findById(id).populate('company'),
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user.id).populate({
@@ -38,74 +23,98 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    discrepancy: async (parent, { id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user.id).populate({
-          path: 'discrepancies.posting',
-          populate: 'company',
-        });
+    
 
-        return user.discrepancies.id(id);
-      }
-
-      throw new AuthenticationError('Not logged in');
+    companies: async () => {
+      return Company.find();
     },
-    advertisings: async () => Advertising.find(),
+    postings: async () => {
+      return Posting.find();
+    },
+    advertisings: async () => {
+      return Advertising.find();
+    },
+    discrepancies: async () => {
+      return Discrepancy.find();
+    },
+  
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+    // User mutations remain unchanged
 
+    // Company mutations
+    addCompany: async (parent, args) => {
+      return Company.create(args);
+    },
+    updateCompany: async (parent, { id, ...args }) => {
+      return Company.findByIdAndUpdate(id, args, { new: true });
+    },
+    deleteCompany: async (parent, { id }) => {
+      return Company.findByIdAndDelete(id);
+    },
+
+    addUser: async (parent, { username, email, password }) => {
+      // First we create the user
+      const user = await User.create({ username, email, password });
+      // To reduce friction for the user, we immediately sign a JSON Web Token and log the user in after they are created
+      const token = signToken(user);
+      // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addDiscrepancy: async (parent, { postingId }, context) => {
-      if (context.user) {
-        const discrepancy = new Discrepancy({ posting: postingId });
 
-        await User.findByIdAndUpdate(context.user.id, {
-          $push: { discrepancies: discrepancy },
-        });
-
-        return discrepancy;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    addAdvertising: async (parent, args) => {
-      const advertising = await Advertising.create(args);
-      return advertising;
-    },
-    updateUser: async (parent, args, context) => {
+      updateUser: async (parent, args, context) => {
       if (context.user) {
         return User.findByIdAndUpdate(context.user.id, args, {
           new: true,
         });
       }
-
-      throw new AuthenticationError('Not logged in');
     },
-    updatePosting: async (parent, { id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return Posting.findByIdAndUpdate(
-        id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
-    },
-    login: async (parent, { email, password }) => {
+ 
+      login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
-      if (!user || !(await user.isCorrectPassword(password))) {
-        throw new AuthenticationError('Incorrect credentials');
+      if (!user) {
+        throw AuthenticationError
       }
-
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw AuthenticationError
+      }
       const token = signToken(user);
-
       return { token, user };
     },
-  },
-};
+    addDiscrepancy: async (parent, args) => {
+      return Discrepancy.create(args);
+    },
+    updateDiscrepancy: async (parent, { id, ...args }) => {
+      return Discrepancy.findByIdAndUpdate(id, args, { new: true });
+    },
+    deleteDiscrepancy: async (parent, { id }) => {
+      return Discrepancy.findByIdAndDelete(id);
+    },
 
-module.exports = resolvers ; // Named export of the 'resolvers' object
+
+    // Posting mutations
+    addPosting: async (parent, args) => {
+      return Posting.create(args);
+    },
+    updatePosting: async (parent, { id, ...args }) => {
+      return Posting.findByIdAndUpdate(id, args, { new: true });
+    },
+    deletePosting: async (parent, { id }) => {
+      return Posting.findByIdAndDelete(id);
+    },
+
+    // Advertising mutations
+    addAdvertising: async (parent, args) => {
+      return Advertising.create(args);
+    },
+    updateAdvertising: async (parent, { id, ...args }) => {
+      return Advertising.findByIdAndUpdate(id, args, { new: true });
+    },
+    deleteAdvertising: async (parent, { id }) => {
+      return Advertising.findByIdAndDelete(id);
+    },
+  }
+  }
+
+module.exports = resolvers;

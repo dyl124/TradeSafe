@@ -1,12 +1,6 @@
-// models/Discrepancy.js
-const mongoose = require('mongoose') ;
-const { Schema } = mongoose;
-
-const bcrypt = require('bcrypt') ;
-
+const mongoose = require('mongoose');
 
 const discrepancySchema = new mongoose.Schema({
- 
   dateOfWorks: String,
   dateOfSubmission: {
     type: Date,
@@ -23,8 +17,15 @@ const discrepancySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Posting',
   },
+  user:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+
 });
 
 const Discrepancy = mongoose.model('Discrepancy', discrepancySchema);
 
-module.exports = Discrepancy
+module.exports = Discrepancy;

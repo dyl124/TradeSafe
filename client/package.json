@@ -12,9 +12,12 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.0",
+    "@stripe/react-stripe-js": "github:stripe/react-stripe-js",
     "antd": "^5.14.0",
+    "apollo-server-express": "^3.13.0",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

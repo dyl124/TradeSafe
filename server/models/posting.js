@@ -1,18 +1,37 @@
-const mongoose = require('mongoose') ;
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const bcrypt = require('bcrypt') ;
 
 const postingSchema = new Schema({
- 
-  title: String,
-  caption: String,
-  photos: [String],
-  priceRange: {
-    min: Number,
-    max: Number,
+  title: {
+    type: String,
+    required: true,
   },
+  caption: {
+    type: String,
+    required: true,
+  },
+  photos: {
+    type: [String],
+    required: true,
+  },
+  priceRange: {
+    min: {
+      type: Number,
+      required: true,
+    },
+    max: {
+      type: Number,
+      required: true,
+    },
+  },
+  creator:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 const Posting = mongoose.model('Posting', postingSchema);
 
-module.exports =  Posting;
+module.exports = Posting;

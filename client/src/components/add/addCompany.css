@@ -1,0 +1,14 @@
+.add-company-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .company-form {
+    width: 400px;
+    padding: 20px;
+  }
+  
+  /* You can add more styles as needed */
+  
