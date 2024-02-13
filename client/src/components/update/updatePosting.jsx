@@ -112,7 +112,7 @@ const UpdatePostingPage = () => {
           <Input type="number" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" className="posting-form-button" loading={loading}>
             Update Posting
           </Button>
         </Form.Item>

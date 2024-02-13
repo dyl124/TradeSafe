@@ -2,6 +2,7 @@ import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useQuery, gql } from "@apollo/client";
 import { Card } from 'antd';
+import './myAdvertisingPage.css'
 
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql",

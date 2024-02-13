@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { useMutation, gql } from "@apollo/client";
 import { Form, Input, Button } from 'antd';
-import "./deleteAdvertising.css"; // Import your CSS 
+import "./deletePosting.css"; // Import your CSS 
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -13,9 +13,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const DELETE_ADVERTISING = gql`
-  mutation DeleteAdvertising($advertisingId: ID!) {
-    deleteAdvertising(advertisingId: $advertisingId) {
+const DELETE_POSTING = gql`
+  mutation DeletePosting($postingId: ID!) {
+    deletePosting(id: $postingId) {
       _id
     }
   }
@@ -23,46 +23,47 @@ const DELETE_ADVERTISING = gql`
 
 const DeletePostingPage = () => {
   const [form] = Form.useForm();
-  const [deleteAdvertising] = useMutation(DELETE_ADVERTISING);
+  const [deletePosting] = useMutation(DELETE_POSTING);
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
     try {
-      setLoading(true);
-      await deleteAdvertising({
-        variables: {
-          advertisingId: values.advertisingId,
-        },
-      });
-      form.resetFields();
-      setLoading(false);
-      // Optionally, you can display a success message or redirect the user
-      console.log('Advertising deleted successfully');
+      if (window.confirm('Are you sure you want to delete this posting?')) {
+        setLoading(true);
+        await deletePosting({
+          variables: {
+            postingId: values.postingId,
+          },
+        });
+        form.resetFields();
+        setLoading(false);
+        console.log('Posting deleted successfully');
+      }
     } catch (error) {
-      console.error('Error deleting advertising:', error);
+      console.error('Error deleting posting:', error);
       setLoading(false);
     }
   };
 
   return (
-    <div className="delete-advertising-container">
-      <h2>Delete Advertising</h2>
+    <div className="delete-posting-container">
+      <h2>Delete Posting</h2>
       <Form
         form={form}
         onFinish={onFinish}
         layout="vertical"
-        className="advertising-form"
+        className="posting-form"
       >
         <Form.Item
-          label="Advertising ID"
-          name="advertisingId"
-          rules={[{ required: true, message: 'Please enter the advertising ID' }]}
+          label="Posting ID"
+          name="postingId"
+          rules={[{ required: true, message: 'Please enter the posting ID' }]}
         >
           <Input />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Delete Advertising
+          <Button type="primary" htmlType="submit" loading={loading} className="posting-form-button">
+            Delete Posting
           </Button>
         </Form.Item>
       </Form>

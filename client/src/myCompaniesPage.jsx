@@ -2,6 +2,7 @@ import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { useQuery, gql } from "@apollo/client";
 import { Card } from 'antd';
+import './myCompaniesPage.css'
 
 
 const httpLink = createHttpLink({

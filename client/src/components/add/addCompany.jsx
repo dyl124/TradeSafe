@@ -145,7 +145,7 @@ const AddCompanyPage = () => {
           <Input.TextArea rows={4} />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" loading={loading} className="company-form-button">
             Add Company
           </Button>
         </Form.Item>

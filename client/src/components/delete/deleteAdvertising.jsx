@@ -63,7 +63,7 @@ const DeleteAdvertisingPage = () => {
           <Input />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" loading={loading} className="advertising-form-button">
             Delete Advertising
           </Button>
         </Form.Item>

@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-direction: row; /* Ensure cards are displayed horizontally */
+  }
+  
+  .card-container > div {
+    width: clamp(240px, calc(25% - 16px), 320px); /* Ensure maximum of 4 cards per row */
+    margin-bottom: 16px;
+  }
+  

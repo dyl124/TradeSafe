@@ -98,7 +98,7 @@ const UpdateAdvertisingPage = () => {
           <Input.TextArea rows={4} />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" loading={loading} className="advertising-form-button">
             Update Advertising
           </Button>
         </Form.Item>

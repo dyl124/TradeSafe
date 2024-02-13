@@ -1,21 +1,11 @@
-.advertising-container {
-    padding: 20px;
-  }
-  
-  .advertising-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  .advertising-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  .advertising-card img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex-direction: row; /* Ensure cards are displayed horizontally */
+}
+
+.card-container > div {
+  width: clamp(240px, calc(25% - 16px), 320px); /* Ensure maximum of 4 cards per row */
+  margin-bottom: 16px;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './login.css'
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -65,7 +65,8 @@ function Login() {
         <div>
             <h2>Login</h2>
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
+            <div className="login-container">
+    <form className="login-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input
@@ -91,6 +92,7 @@ function Login() {
                 <button type="submit">Login</button>
                 <p>Otherwise you can register here <a href="http://localhost:3000/register">Register</a></p>
             </form>
+  </div>   
         </div>
     );
 }

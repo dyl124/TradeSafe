@@ -1,27 +1,32 @@
-.update-advertising-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 100vh; 
-}
-.advertising-form {
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100vh; 
+  }
+  
+  .login-form {
     min-width: 30vw;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
     margin-left: 70vw;
-}
-h2 {
+
+
+  }
+  
+  h2 {
     text-align: center;
 margin-left: 50%;
-margin-right: 50%; 
-margin-top: 1px;  
+margin-right: 50%;   
   }
-  .advertising-form label {
+  
+  .login-form label {
     font-weight: bold;
   }
-.advertising-form input {
+  
+  .login-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -29,7 +34,7 @@ margin-top: 1px;
     border: 1px solid #ccc;
   }
   
-  .advertising-form-button {
+  .login-form button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -39,7 +44,16 @@ margin-top: 1px;
     cursor: pointer;
   }
   
-  .advertising-form-button:hover {
+  .login-form button:hover {
     background-color: #0056b3;
+  }
+  
+  .login-form p {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .login-form a {
+    color: #007bff;
   }
   

@@ -108,7 +108,7 @@ const AddPostingPage = () => {
           <Input type="number" />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button type="primary" htmlType="submit" loading={loading} className="posting-form-button">
             Add Posting
           </Button>
         </Form.Item>

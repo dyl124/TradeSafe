@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import './register.css'; // Import your CSS file
 
 function Register() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             // Send register mutation request to your GraphQL server
             const response = await fetch('http://localhost:3001/graphql', {
@@ -38,22 +39,23 @@ function Register() {
                     },
                 }),
             });
-
+    
             const { data } = await response.json();
-            
+    
             window.location.href = "http://localhost:3000/login";
-            alert('successfully signed up.')
-            
-            
+            alert('successfully signed up.');
         } catch (error) {
             console.error(error);
         }
     };
-
+    
     return (
         <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+
+            <h2>Register</h2>  
+                  <div className="register-container">
+
+            <form className="register-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name:</label>
                     <input
@@ -98,7 +100,11 @@ function Register() {
                 </div>
                 <button type="submit">Register</button>
             </form>
+            <p>Otherwise you can login here <a href="http://localhost:3000/login">Login</a></p>
+
         </div>
+        </div>
+
     );
 }
 
