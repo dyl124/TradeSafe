@@ -4,13 +4,13 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "start": "nodemon server/server.js",
+        "start": "serve -s dist",
         "vite": "cd client && npm run dev",
         "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
         "install": "cd server && npm i && cd ../client && npm i",
         "seed": "cd server && npm run seed",
         "clean-database": "cd server && npm run database-cleaner.js",
-        "build": "cd client && npm run build"
+        "build": "vite build"
     },
     "dependencies": {
         "@apollo/server": "^4.10.0",
@@ -31,6 +31,7 @@
         "nodemon": "^3.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "serve": "^14.2.1",
         "stripe": "^14.15.0"
     },
     "devDependencies": {
