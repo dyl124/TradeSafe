@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 export default {
 	//...,
 	external: [
-		'@apollo/client',
+		'@apollo/client', 'react-router-dom',
 		fileURLToPath(
 			new URL(
 				import.meta.url
