@@ -2,9 +2,7 @@
     "name": "trade-safe",
     "private": true,
     "version": "0.0.0",
-    "engines": {
-        "node": "20.8.0"
-    },
+   
     "type": "module",
     "scripts": {
         "start": "nodemon server/server.js",
@@ -46,5 +44,8 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
         "vite": "^4.4.5"
+    },
+    "engines": {
+        "node": "20.8.0"
     }
 }
