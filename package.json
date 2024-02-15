@@ -4,13 +4,12 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "start": "serve -s dist",
+        "start": "nodemon server/server.js",
         "vite": "cd client && npm run dev",
         "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
         "install": "cd server && npm i && cd ../client && npm i",
         "seed": "cd server && npm run seed",
-        "clean-database": "cd server && npm run database-cleaner.js",
-        "build": "vite build"
+        "build": "cd client && npm run build"
     },
     "dependencies": {
         "@apollo/server": "^4.10.0",

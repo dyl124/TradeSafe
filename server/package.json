@@ -3,11 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "serve -s dist",
+    "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node config/seeds.js",
-    "clean-database": "node config/clean-database.js",
-    "build": "vite build"
+    "seed": "node seed/seed.js"
 
   },
   "dependencies": {
