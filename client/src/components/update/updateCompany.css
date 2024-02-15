@@ -8,6 +8,8 @@ body {
   justify-content: center;
   align-items: center;
   max-height: 100vh; 
+  margin-top: 10vh;
+
 }
 .company-form {
   min-width: 30vw;
@@ -16,6 +18,8 @@ body {
   border-radius: 5px;
   background-color: #f9f9f9;
   margin-top: 1px;
+  margin-top: 10vh;
+
 
 }
 h2 {
