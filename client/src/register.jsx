@@ -98,9 +98,10 @@ function Register() {
                         autoComplete="current-password"
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Register</button> 
+                <p className='text-bottom'>Otherwise you can login here <a href="http://localhost:3000/login">Login</a></p>
+
             </form>
-            <p>Otherwise you can login here <a href="http://localhost:3000/login">Login</a></p>
 
         </div>
         </div>

@@ -66,19 +66,20 @@ const AddAdvertisingPage = () => {
         layout="vertical"
         className="advertising-form"
       >
-        <Form.Item
-          label="Photos (comma-separated URLs)"
-          name="photos"
-          rules={[{ required: true, message: 'Please enter at least one photo URL' }]}
-        >
-          <Input.TextArea rows={4} />
-        </Form.Item>
+       
         <Form.Item
           label="Title"
           name="title"
           rules={[{ required: true, message: 'Please enter the title' }]}
         >
           <Input />
+          <Form.Item
+          label="Photos (comma-separated URLs)"
+          name="photos"
+          rules={[{ required: true, message: 'Please enter at least one photo URL' }]}
+        >
+          <Input.TextArea rows={4} />
+        </Form.Item>
         </Form.Item>
         <Form.Item
           label="Captions"

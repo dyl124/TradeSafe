@@ -1,54 +1,61 @@
 import React from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { useQuery, gql } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache, useQuery, gql } from "@apollo/client";
 import { Card } from 'antd';
-import './myCompaniesPage.css'
-
-
-const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
-});
+import './companiesNearMePage.css';
 
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
+  uri: "http://localhost:3001/graphql",
+  cache: new InMemoryCache()
 });
 
-const GET_USER_COMPANIES = gql`
-  query GetUserCompanies {
-    user {
-      companies {
-        _id
-        name
-        abn
-        mobile
-        email
-        recentWorkPhotos
-      }
+const loggedInUserId = localStorage.getItem('userId'); // Retrieve the logged-in user ID from local storage
+
+const GET_COMPANIES = gql`
+  query GetCompanies($userId: ID!) {
+    companies(userId: $userId) {
+      _id
+      name
+      abn
+      mobile
+      email
+      recentWorkPhotos
+      director
     }
   }
 `;
 
-const MyCompaniesPage = () => {
-  const { loading, error, data } = useQuery(GET_USER_COMPANIES);
+const CompaniesPage = () => {
+  const { loading, error, data } = useQuery(GET_COMPANIES, {
+    variables: { userId: loggedInUserId },
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const userCompanies = data.user.companies;
-
   return (
-    <div>
-      <h2>Companies Belonging to the User:</h2>
-      
-      <div className="card-container" style={{ display: 'flex', gap: '16px' }}>
-        {userCompanies.map(company => (
-          <div key={company._id} style={{ marginBottom: '16px' }}>
+    <div className="new-container">
+      <h2>Company Data:</h2>
+
+      <div className="card-container">
+        {data.companies.map(company => (
+          <div key={company._id} className="card-wrapper">
             <Card
               hoverable
-              style={{ width: 240 }}
-              cover={<img alt="Recent Work" src={company.recentWorkPhotos} />}
+              style={{
+                width: 300,
+                gap: 20,
+                marginLeft: 20,
+                marginRight: 20,
+                backgroundColor: '#9c9595', // Example background color
+                borderRadius: 8, // Example border radius
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Example box shadow
+              }}
             >
+              <div className="card-style">
+                {company.recentWorkPhotos.map((photo, index) => (
+                  <img key={index} alt={`Recent Work ${index + 1}`} src={photo} />
+                ))}
+              </div>
               <Card.Meta
                 title={company.name}
                 description={
@@ -67,10 +74,10 @@ const MyCompaniesPage = () => {
   );
 };
 
-const MyCompaniesPageWithApollo = () => (
+const CompaniesPageWithApollo = () => (
   <ApolloProvider client={client}>
-    <MyCompaniesPage />
+    <CompaniesPage />
   </ApolloProvider>
 );
 
-export default MyCompaniesPageWithApollo;
+export default CompaniesPageWithApollo;

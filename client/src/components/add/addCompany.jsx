@@ -36,7 +36,8 @@ const ADD_COMPANY = gql`
     }
   }
 `;
-
+const loggedInUserId = localStorage.getItem('userId'); // Retrieve the logged-in user ID from local storage
+console.log(loggedInUserId, 'user id')
 const AddCompanyPage = () => {
   const [form] = Form.useForm();
   const [addCompany] = useMutation(ADD_COMPANY);
@@ -45,6 +46,7 @@ const AddCompanyPage = () => {
   const onFinish = async (values) => {
     try {
       setLoading(true);
+      const loggedInUserId = localStorage.getItem('userId'); // Retrieve the logged-in user ID from local storage
       const response = await fetch('http://localhost:3001/graphql', {
         method: 'POST',
         headers: {
@@ -52,27 +54,30 @@ const AddCompanyPage = () => {
         },
         body: JSON.stringify({
           query: `
-            mutation AddCompany(
-              $name: String!
-              $abn: String
-              $mobile: String
-              $email: String!
-              $recentWorkPhotos: [String]
+          mutation AddCompany(
+            $name: String!
+            $abn: String
+            $mobile: String
+            $email: String!
+            $recentWorkPhotos: [String]
+            $director: [String] 
+          ) {
+            addCompany(
+              name: $name
+              abn: $abn
+              mobile: $mobile
+              email: $email
+              recentWorkPhotos: $recentWorkPhotos
+              director: $director
             ) {
-              addCompany(
-                name: $name
-                abn: $abn
-                mobile: $mobile
-                email: $email
-                recentWorkPhotos: $recentWorkPhotos
-              ) {
-                _id
-                name
-                abn
-                mobile
-                email
-              }
+              _id
+              name
+              abn
+              mobile
+              email
             }
+          }
+          
           `,
           variables: {
             name: values.name,
@@ -80,10 +85,11 @@ const AddCompanyPage = () => {
             mobile: values.mobile,
             email: values.email,
             recentWorkPhotos: values.recentWorkPhotos ? values.recentWorkPhotos.split(',') : [],
+            director: loggedInUserId,
           },
         }),
       });
-      
+
       const data = await response.json();
   
       if (data && data.data && data.data.addCompany) {

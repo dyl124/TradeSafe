@@ -1,9 +1,8 @@
-import * as jwt_decode from "jwt-decode"; // Import all exports from jwt-decode
+import * as jwt_decode from "jwt-decode"; 
 
 const TOKEN_KEY = "token";
 
 export const getToken = () => {
-  // Retrieve token from local storage
   const token = localStorage.getItem(TOKEN_KEY);
   console.log("Token retrieved from local storage:", token);
   return token;

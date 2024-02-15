@@ -41,7 +41,7 @@ function Login() {
     
                 // Store token in local storage
                 localStorage.setItem('token', token);
-    
+                localStorage.setItem('userId', user._id);    
                 // Redirect to dashboard or any other page
                 window.location.href = "http://localhost:3000/";
                 alert('Successfully logged in!')

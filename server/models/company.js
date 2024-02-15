@@ -7,12 +7,7 @@ const companySchema = new mongoose.Schema({
   mobile: String,
   email: String,
   recentWorkPhotos: [String],
-  director:[
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+  director:[String],
 });
 
 const Company = mongoose.model('Company', companySchema);

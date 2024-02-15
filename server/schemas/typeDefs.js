@@ -36,7 +36,7 @@ const typeDefs = gql`
     mobile: String
     email: String
     recentWorkPhotos: [String]
-    director: [User]
+    director: [String]
   }
 
   type Posting {
@@ -82,6 +82,7 @@ const typeDefs = gql`
     address: String
   }
 
+
   type Query {
     user: User
     companies: [Company]
@@ -113,6 +114,7 @@ const typeDefs = gql`
       mobile: String
       email: String!
       recentWorkPhotos: [String]
+      director: [String]
     ): Company
 
     updateCompany(

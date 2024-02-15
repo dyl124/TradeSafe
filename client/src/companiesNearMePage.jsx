@@ -1,7 +1,9 @@
 import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useQuery, gql } from "@apollo/client";
-import { Card, DatePicker, Space } from 'antd';
+import { Card } from 'antd';
+import './companiesNearMePage.css';
+
 const client = new ApolloClient({
   uri: "http://localhost:3001/graphql",
   cache: new InMemoryCache()
@@ -10,6 +12,7 @@ const client = new ApolloClient({
 const GET_COMPANIES = gql`
   {
     companies {
+      _id
       name
       abn
       mobile
@@ -26,16 +29,25 @@ const CompaniesPage = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <h2>CompanyData:</h2>
+    <div className="-company-container">
+      <h2 className="newcompanytittle">Company Data:</h2>
 
-      <div className="card-container" style={{ display: 'flex', gap: '16px' }}>
+      <div className="new-company-card-container">
         {data.companies.map(company => (
-          <div key={company._id} style={{ marginBottom: '16px'  }}>
+          <div key={company._id} className="zompanyz-card-wrapper">
             <Card
               hoverable
-              style={{ width: 240}}
-              cover={<img alt="Recent Work" src={company.recentWorkPhotos} />}
+              style={{
+                width: 300,
+                minHeight: 250,
+                gap: 20,
+                marginLeft: 20,
+                marginRight: 20,
+                backgroundColor: '#9c9595', // Example background color
+                borderRadius: 8, // Example border radius
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Example box shadow
+              }}
+              cover={<img alt="Recent Work" src={company.recentWorkPhotos[1]} className="comp-card-style" />}
             >
               <Card.Meta
                 title={company.name}

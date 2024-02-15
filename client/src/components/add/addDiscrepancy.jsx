@@ -72,13 +72,13 @@ const AddDiscrepancyPage = () => {
 
   return (
     <div className="add-discrepancy-container">
-      <h2>Add New Discrepancy</h2>
       <Form
         form={form}
         onFinish={onFinish}
         layout="vertical"
         className="discrepancy-form"
       >
+         <h2>Add New Discrepancy</h2>
         <Form.Item
           label="Date of Works"
           name="dateOfWorks"

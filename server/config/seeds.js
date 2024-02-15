@@ -21,9 +21,8 @@ const companySeedData = [
       mobile: '1234567890',
       email: 'abc@example.com',
       recentWorkPhotos: [
-        'https://www.example.com/photo1.jpg',
-        'https://www.example.com/photo2.jpg',
-      ],
+        'https://www.example.com/photo5.jpg',
+        'https://www.example.com/photo6.jpg',      ],
     },
     {
       name: 'XYZ Builders',
@@ -31,8 +30,8 @@ const companySeedData = [
       mobile: '9876543210',
       email: 'xyz@example.com',
       recentWorkPhotos: [
-        'https://www.example.com/photo3.jpg',
-        'https://www.example.com/photo4.jpg',
+        'https://www.example.com/photo5.jpg',
+        'https://www.example.com/photo6.jpg',
       ],
     },
     {
@@ -96,6 +95,18 @@ const discrepancySeedData = [
   {
     dateOfWorks: '2023-03-10',
     complaints: 'Damaged tiles during bathroom renovation',
+    photosOfWork: [
+      'https://example.com/photo5.jpg',
+      'https://example.com/photo6.jpg'
+    ],
+    scopeOfWorks: 'Bathroom renovation',
+    company: '65c8113a5efadd871cd81a2f',
+    posting: '65c8113a5efadd871cd81a31',
+    satisfied: 'No',
+  },
+  {
+    dateOfWorks: '2023-03-10',
+    complaints: 'Damaged hot water service during bathroom renovation',
     photosOfWork: [
       'https://example.com/photo5.jpg',
       'https://example.com/photo6.jpg'
@@ -235,6 +246,30 @@ const postingSeedData = [
       max: 2000
     }
   },
+  {
+    title: 'electrical Installation and Repair',
+    caption: 'Seeking experienced electrical to install a new electrics and repair existing damages.',
+    photos: [
+      'https://example.com/roofer1.jpg',
+      'https://example.com/roofer2.jpg'
+    ],
+    priceRange: {
+      min: 2000,
+      max: 3000
+    }
+  },
+  {
+    title: 'car Installation and Repair',
+    caption: 'Seeking experienced car repairers to install a new new car sterio and repair existing damages.',
+    photos: [
+      'https://example.com/roofer1.jpg',
+      'https://example.com/roofer2.jpg'
+    ],
+    priceRange: {
+      min: 500,
+      max: 2000
+    }
+  },
 ];
 
 
@@ -264,6 +299,24 @@ const advertisingSeedData = [
     ],
     title: 'Transform Your Roof with Professional Roofing Services',
     captions: 'Protect your home with our expert roofing solutions. Get a free estimate now!',
+    company: '65c8113a5efadd871cd81a2d',
+  },
+  {
+    photos: [
+      'https://example.com/photo5.jpg',
+      'https://example.com/photo6.jpg',
+    ],
+    title: 'Transform Your bedding with Professional bedding Services',
+    captions: 'Protect your home with our expert bedding solutions. Get a free estimate now!',
+    company: '65c8113a5efadd871cd81a2d',
+  },
+  {
+    photos: [
+      'https://example.com/photo5.jpg',
+      'https://example.com/photo6.jpg',
+    ],
+    title: 'Transform Your electrical with Professional electrical Services',
+    captions: 'Protect your home with our expert electrical solutions. Get a free estimate now!',
     company: '65c8113a5efadd871cd81a2d',
   },
 ];

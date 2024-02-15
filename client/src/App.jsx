@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Button } from "antd";
 import {
-  PieChartOutlined,
+  HomeOutlined,
   UserOutlined,
+  PlusOutlined,
+  CloseOutlined,
+  EditOutlined,
+  LogoutOutlined,
+  GlobalOutlined
+
 } from "@ant-design/icons";
-import { getToken, removeToken } from "../auth/auth"; // Import authentication functions from auth.js
+import { getToken, removeToken } from "../auth/auth";
 
 import HomePage from "./home";
 import Login from "./login";
@@ -41,34 +47,21 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if the user is logged in by verifying the presence of the token
     const token = getToken();
     setLoggedIn(!!token);
   }, []);
 
   const handleLogout = () => {
-    // Remove the token from local storage and update the loggedIn state
     removeToken();
     setLoggedIn(false);
   };
 
   const menuItems = [
-    { label: "Home", key: "1", icon: <PieChartOutlined />, link: "/" },
-    {
-      label: "My Profile",
-      key: "submenu1",
-      icon: <UserOutlined />,
-      children: [
-        { label: "My Companies", key: "2", link: "/mycompanies" },
-        { label: "My Advertising", key: "3", link: "/myadvertising" },
-        { label: "Discrepancies", key: "4", link: "/discrepancies" },
-        { label: "UpdateMyProfile", key: "5", link: "/updatemyprofile" },
-      ],
-    },
+    { label: "Home", key: "1", icon: <HomeOutlined />, link: "/" },
     {
       label: "Connect",
       key: "submenu2",
-      icon: <UserOutlined />,
+      icon: <GlobalOutlined />,
       children: [
         { label: "Companies Near me", key: "6", link: "/companiesnearme" },
         { label: "Advertising Near Me", key: "7", link: "/advertisingnearme" },
@@ -77,44 +70,43 @@ function App() {
     {
       label: "Create",
       key: "submenu3",
-      icon: <UserOutlined />,
+      icon: <PlusOutlined />,
       children: [
-        { label: "Add Companies", key: "8", link: "/addcompanies" },
+        { label: "Add Companies", key: "8",  link: "/addcompanies" },
         { label: "Add Advertising", key: "9", link: "/addadvertising" },
         { label: "Add Posting", key: "10", link: "/addposting" },
         { label: "Add Discrepancies", key: "11", link: "/adddiscrepancies" },
-
       ],
     },
     {
       label: "Delete",
       key: "submenu4",
-      icon: <UserOutlined />,
+      icon: <CloseOutlined />,
       children: [
         { label: "Delete Companies", key: "12", link: "/deletecompanies" },
         { label: "Delete Advertising", key: "13", link: "/deleteadvertising" },
         { label: "Delete Posting", key: "14", link: "/deleteposting" },
         { label: "Delete Discrepancies", key: "15", link: "/deletediscrepancies" },
-
       ],
     },
     {
       label: "Update",
       key: "submenu5",
-      icon: <UserOutlined />,
+      icon: <EditOutlined />,
       children: [
         { label: "Update Companies", key: "16", link: "/updatecompanies" },
         { label: "Update Advertising", key: "17", link: "/updateadvertising" },
         { label: "Update Posting", key: "18", link: "/updateposting" },
         { label: "Update Discrepancies", key: "19", link: "/updatediscrepancies" },
-
       ],
     },
-    { label: "Logout", key: "20", icon: <PieChartOutlined />, link: "/logout" },
-
+    { label: "Logout", key: "20", icon: <LogoutOutlined />, link: "/logout" },
   ];
 
-  // Function to render menu items
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
   const renderMenuItems = (items) =>
     items.map((item) =>
       item.children ? (
@@ -131,7 +123,7 @@ function App() {
   return (
     <Router>
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+        <Sider collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
           <div className="demo-logo-vertical" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             {renderMenuItems(menuItems)}
@@ -162,7 +154,6 @@ function App() {
                   <Route path="/updateadvertising" element={<UpdateAdvertisingPage />} />
                   <Route path="/updateposting" element={<UpdatePostingPage />} />
                   <Route path="/updatediscrepancies" element={<UpdateDiscrepanciesPage />} />
-                  
                 </>
               ) : (
                 <>

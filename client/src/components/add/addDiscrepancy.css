@@ -1,8 +1,15 @@
-.update-discrepancy-container{
+body {
+  display: flex;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+.add-discrepancy-container{
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 100vh; 
+  min-height: 80vh; 
+  margin-top: 5vh;
 }
 .discrepancy-form {
   min-width: 30vw;
@@ -10,13 +17,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-left: 70vw;
 }
 h2 {
-  text-align: center;
-margin-left: 50%;
-margin-right: 50%; 
-margin-top: 1px;  
+  white-space: nowrap; 
+  font-size: medium;
+  margin-left: 1px;
+  position: relative;
+  display:flex ;
 }
 .discrepancy-form label {
   font-weight: bold;

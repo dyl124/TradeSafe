@@ -65,13 +65,14 @@ const AddPostingPage = () => {
 
   return (
     <div className="add-posting-container">
-      <h2>Add New Posting</h2>
+    
       <Form
         form={form}
         onFinish={onFinish}
         layout="vertical"
         className="posting-form"
       >
+          <h2>Add New Posting</h2>
         <Form.Item
           label="Title"
           name="title"
