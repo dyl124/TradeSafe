@@ -50,9 +50,7 @@ const AddAdvertisingPage = () => {
       form.resetFields();
       setLoading(false);
       // Optionally, you can display a success message or redirect the user
-      console.log('Advertising added successfully');
     } catch (error) {
-      console.error('Error adding advertising:', error);
       setLoading(false);
     }
   };

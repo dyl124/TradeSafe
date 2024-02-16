@@ -38,9 +38,7 @@ const DeleteCompanyPage = () => {
       form.resetFields();
       setLoading(false);
       // Optionally, you can display a success message or redirect the user
-      console.log('Company deleted successfully');
     } catch (error) {
-      console.error('Error deleting company:', error);
       setLoading(false);
     }
   };

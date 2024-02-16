@@ -53,9 +53,7 @@ const UpdateAdvertisingPage = () => {
       form.resetFields();
       setLoading(false);
       // Optionally, you can display a success message or redirect the user
-      console.log('Advertising updated successfully');
     } catch (error) {
-      console.error('Error updating advertising:', error);
       setLoading(false);
     }
   };

@@ -37,7 +37,6 @@ const ADD_COMPANY = gql`
   }
 `;
 const loggedInUserId = localStorage.getItem('userId'); // Retrieve the logged-in user ID from local storage
-console.log(loggedInUserId, 'user id')
 const AddCompanyPage = () => {
   const [form] = Form.useForm();
   const [addCompany] = useMutation(ADD_COMPANY);
@@ -94,7 +93,6 @@ const AddCompanyPage = () => {
   
       if (data && data.data && data.data.addCompany) {
         // Optionally, you can handle the success response here
-        console.log('Company added successfully:', data.data.addCompany);
       } else {
         // Handle error response
         console.error('Error adding company:', data.errors);

@@ -39,7 +39,6 @@ const DeleteAdvertisingPage = () => {
       form.resetFields();
       setLoading(false);
       // Optionally, you can display a success message or redirect the user
-      console.log('Advertising deleted successfully');
     } catch (error) {
       console.error('Error deleting advertising:', error);
       setLoading(false);

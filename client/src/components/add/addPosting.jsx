@@ -56,7 +56,6 @@ const AddPostingPage = () => {
       form.resetFields();
       setLoading(false);
       // Optionally, you can display a success message or redirect the user
-      console.log('Posting added successfully');
     } catch (error) {
       console.error('Error adding posting:', error);
       setLoading(false);

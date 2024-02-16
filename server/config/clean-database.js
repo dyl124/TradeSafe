@@ -20,9 +20,7 @@ async function cleanDatabase() {
     await Advertising.deleteMany({});
     await Posting.deleteMany({});
 
-    console.log('Database cleaned successfully');
   } catch (error) {
-    console.error('Error cleaning database:', error);
   } finally {
     // Disconnect from MongoDB
     await mongoose.disconnect();

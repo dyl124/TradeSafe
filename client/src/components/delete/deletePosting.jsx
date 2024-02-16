@@ -37,10 +37,8 @@ const DeletePostingPage = () => {
         });
         form.resetFields();
         setLoading(false);
-        console.log('Posting deleted successfully');
       }
     } catch (error) {
-      console.error('Error deleting posting:', error);
       setLoading(false);
     }
   };

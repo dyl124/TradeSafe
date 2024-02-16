@@ -37,10 +37,8 @@ const DeleteDiscrepancyPage = () => {
         });
         form.resetFields();
         setLoading(false);
-        console.log('Discrepancy deleted successfully');
       }
     } catch (error) {
-      console.error('Error deleting discrepancy:', error);
       setLoading(false);
     }
   };

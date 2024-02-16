@@ -62,9 +62,7 @@ const AddCompanyPage = () => {
 
       form.resetFields();
       setLoading(false);
-      console.log('Company updated successfully');
     } catch (error) {
-      console.error('Error updating company:', error);
       setLoading(false);
     }
   };

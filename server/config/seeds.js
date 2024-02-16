@@ -324,45 +324,35 @@ const advertisingSeedData = [
 const seedCompany = async () => {
   try {
     await Company.create(companySeedData);
-    console.log('Companies seeded successfully.');
   } catch (error) {
-    console.error('Error seeding companies:', error);
   }
 };
 
 const seedPosting = async () => {
   try {
     await Posting.create(postingSeedData);
-    console.log('Postings seeded successfully.');
   } catch (error) {
-    console.error('Error seeding postings:', error);
   }
 };
 
 const seedDiscrepancy = async () => {
   try {
     await Discrepancy.create(discrepancySeedData);
-    console.log('Discrepancies seeded successfully.');
   } catch (error) {
-    console.error('Error seeding discrepancies:', error);
   }
 };
 
 const seedUser = async () => {
   try {
     await User.create(userSeedData);
-    console.log('Users seeded successfully.');
   } catch (error) {
-    console.error('Error seeding users:', error);
   }
 };
 
 const seedAdvertising = async () => {
   try {
     await Advertising.create(advertisingSeedData);
-    console.log('Advertisings seeded successfully.');
   } catch (error) {
-    console.error('Error seeding advertisings:', error);
   }
 };
 

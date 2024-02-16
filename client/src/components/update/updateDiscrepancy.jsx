@@ -65,9 +65,7 @@ const UpdateDiscrepancyPage = () => {
       });
       form.resetFields();
       setLoading(false);
-      console.log('Discrepancy updated successfully');
     } catch (error) {
-      console.error('Error updating discrepancy:', error);
       setLoading(false);
     }
   };

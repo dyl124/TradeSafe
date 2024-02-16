@@ -58,9 +58,7 @@ const UpdatePostingPage = () => {
       });
       form.resetFields();
       setLoading(false);
-      console.log('Posting updated successfully');
     } catch (error) {
-      console.error('Error updating posting:', error);
       setLoading(false);
     }
   };
