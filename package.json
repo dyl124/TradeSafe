@@ -12,6 +12,7 @@
         "build": "cd client && npm run build"
     },
     "dependencies": {
+        "@apollo/client": "^3.9.5",
         "@apollo/server": "^4.10.0",
         "@stripe/react-stripe-js": "^2.4.0",
         "antd": "^5.14.0",
