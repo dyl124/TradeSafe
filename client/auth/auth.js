@@ -1,6 +1,11 @@
 import * as jwt_decode from "jwt-decode"; 
 
-const TOKEN_KEY = "token";
+require('dotenv').config();
+
+// Now you can access your environment variables like this:
+const tokenKey = process.env.TOKEN_KEY;
+
+// You can use tokenKey in your code as needed
 
 export const getToken = () => {
   const token = localStorage.getItem(TOKEN_KEY);

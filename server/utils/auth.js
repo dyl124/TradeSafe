@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-const secret = 'topSecretToken';
+require('dotenv').config();
+
+const secret = process.env.SECRET;
+
+// You can use secret in your code as needed
 const expiration = '4h';
 
 class AuthenticationError extends Error {

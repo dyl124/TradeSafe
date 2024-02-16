@@ -6,7 +6,11 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const express = require('express');
 const app = express();
-const PORT = 3001;
+require('dotenv').config();
+
+const serverPort = process.env.SERVERPORT;
+
+// You can use serverPort in your code as needed
 const bodyParser = require('body-parser');
 
 // Enable CORS middleware
@@ -46,9 +50,9 @@ const startApolloServer = async () => {
   }
 
   db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log('Server running on port 3001');
-      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+    app.listen(SERVERPORT, () => {
+      console.log('Server running on SERVERPORT 3001');
+      console.log(`Use GraphQL at http://localhost:${SERVERPORT}/graphql`);
     });
   });
 };
