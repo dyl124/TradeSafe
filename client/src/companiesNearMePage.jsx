@@ -4,8 +4,10 @@ import { useQuery, gql } from "@apollo/client";
 import { Card } from 'antd';
 import './companiesNearMePage.css';
 
+
+
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache()
 });
 

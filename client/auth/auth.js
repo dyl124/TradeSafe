@@ -1,14 +1,15 @@
-import * as jwt_decode from "jwt-decode"; 
+import * as jwt_decode from "jwt-decode";
 
-require('dotenv').config();
+// Environment variables
+const TOKEN_KEY = "token"; // Assuming this is your token key
+const SECRET = "topSecretToken"; // Assuming this is your secret
 
 // Now you can access your environment variables like this:
-const tokenKey = process.env.TOKEN_KEY;
+const tokenKey = TOKEN_KEY;
 
-// You can use tokenKey in your code as needed
-
+// Functions for token management
 export const getToken = () => {
-  const token = localStorage.getItem(TOKEN_KEY);
+  const token = localStorage.getItem(TOKEN_KEY); // Assuming localStorage is available
   console.log("Token retrieved from local storage:", token);
   return token;
 };
@@ -16,17 +17,16 @@ export const getToken = () => {
 export const setToken = (token) => {
   // Save token to local storage
   console.log("Setting token in local storage:", token);
-  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.setItem(TOKEN_KEY, token); // Assuming localStorage is available
 };
 
 export const removeToken = () => {
   // Remove token from local storage
   console.log("Removing token from local storage");
-  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(TOKEN_KEY); // Assuming localStorage is available
 };
 
-
-
+// Function to check if token is expired
 const isTokenExpired = (token) => {
   try {
     const decoded = jwt_decode(token);
@@ -43,12 +43,13 @@ const isTokenExpired = (token) => {
   }
 };
 
+// Function to check if user is authenticated
 export const isAuthenticated = () => {
-    // Check if the user is authenticated (token exists and is not expired)
-    const token = getToken();
-    const authenticated = !!token && !isTokenExpired(token);
-    console.log("User authenticated:", authenticated);
-    return authenticated;
-  };
-  
+  // Check if the user is authenticated (token exists and is not expired)
+  const token = getToken();
+  const authenticated = !!token && !isTokenExpired(token);
+  console.log("User authenticated:", authenticated);
+  return authenticated;
+};
+
 export { jwt_decode }; // Export jwt_decode for external usage if needed

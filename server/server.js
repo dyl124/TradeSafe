@@ -8,7 +8,6 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-const serverPort = process.env.SERVERPORT;
 
 // You can use serverPort in your code as needed
 const bodyParser = require('body-parser');
@@ -50,9 +49,9 @@ const startApolloServer = async () => {
   }
 
   db.once('open', () => {
-    app.listen(SERVERPORT, () => {
-      console.log('Server running on SERVERPORT 3001');
-      console.log(`Use GraphQL at http://localhost:${SERVERPORT}/graphql`);
+    app.listen(3001, () => {
+      console.log('Server running on port 3001');
+      console.log(`Use GraphQL at http://localhost:3001/graphql`);
     });
   });
 };
