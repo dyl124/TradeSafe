@@ -8,6 +8,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
+const serverPort = process.env.SERVER_PORT || 3001; // Use the environment variable or fallback to 3001 if not defined
 
 // You can use serverPort in your code as needed
 const bodyParser = require('body-parser');
@@ -49,7 +50,7 @@ const startApolloServer = async () => {
   }
 
   db.once('open', () => {
-    app.listen(3001, () => {
+    app.listen(serverPort, () => {
     });
   });
 };
